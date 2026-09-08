@@ -50,3 +50,20 @@ for pattern in patterns:
     pattern,
     text
   )
+
+if match:
+
+quey=match.group(1)
+break
+query = query.strip()
+
+vedio.id = get_vid(query)
+
+if not vedio_id:
+return none
+
+return(
+  "http://www.youtube.com/embed/"
+  + vedio_id
+  +"?autoplay=1&mute=0"
+)
