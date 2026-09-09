@@ -1,69 +1,75 @@
 import re
 import urllib.parse
-import urlllib.request
+import urllib.request
+
 
 def get_vid(query):
 
-  try:
-    encoded = urllib.parse.qoute(query)
+    try:
+        encoded = urllib.parse.quote(query)
 
-url= (
-  "http:/www.youtube.com/results"
-  "?search query="+encoded
-)
+        url = (
+            "https://www.youtube.com/results"
+            "?search_query=" + encoded
+        )
 
-request = urllib.request.Request(
-  url,
-  headers = {
-    "user-agent":"mozilla/5.0"
-  }                       
-  }
-data= urllib.request.urlopen(
-  request,
-  timeout=5
-).read().decode()("utf-8",errors="ignore")
+        request = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0"
+            }
+        )
 
-ids = re.findall(
-  r'"vedioId":"([^"]+)";,
-  data
-)
-return ids[0] if ids else none
+        data = urllib.request.urlopen(
+            request,
+            timeout=5
+        ).read().decode("utf-8", errors="ignore")
 
-except Exception:
-return none 
+        ids = re.findall(
+            r'"videoId":"([^"]+)"',
+            data
+        )
+
+        return ids[0] if ids else None
+
+    except Exception:
+        return None
+
 
 def create_youtube_url(command):
 
-  text = command.lower().strip()
+    text = command.lower().strip()
 
-patterns = [
-  r"play\s+song\s+(.+)",
-  r"play\s+music\s+(.+)"
-  r"play\s+(.+)",
-  r"youtube\s+(.+)"
-]
+    patterns = [
+        r"play\s+song\s+(.+)",
+        r"play\s+music\s+(.+)",
+        r"play\s+(.+)",
+        r"youtube\s+(.+)"
+    ]
 
-query = command
+    query = command
 
-for pattern in patterns:
-  match = re.search(
-    pattern,
-    text
-  )
+    for pattern in patterns:
 
-if match:
+        match = re.search(
+            pattern,
+            text
+        )
 
-quey=match.group(1)
-break
-query = query.strip()
+        if match:
 
-vedio.id = get_vid(query)
+            query = match.group(1)
+            break
 
-if not vedio_id:
-return none
+    query = query.strip()
 
-return(
-  "http://www.youtube.com/embed/"
-  + vedio_id
-  +"?autoplay=1&mute=0"
-)
+    video_id = get_vid(query)
+
+    if not video_id:
+        return None
+
+    return (
+        "https://www.youtube.com/embed/"
+        + video_id
+        + "?autoplay=1&mute=0"
+    )
