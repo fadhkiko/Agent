@@ -21,4 +21,36 @@ promt = f"""
  Rules:
  - do not copy the command litteraly.
  - do not explain anything.
- -
+ - do not invent names, dates, prices, companies, attachments, or facts.
+ - keep the email natural and concine.
+ - include an appropriate greeting and closing.
+
+ Output exactly:
+
+ SUBJECT: <subject>
+ BODY:
+ <email body>
+
+ User command:
+ {command}
+ """
+
+url = (
+  f"https://generativelangauage.googleapis.com/"
+  f"vibeta/module/{model}:generatecontent"
+)
+payload ={
+  "contents": 0,7,
+  "maxOutputTokens": 800
+}
+}
+
+req = urllib.request.Request(
+  url,
+  data=json.dumbs(playload).encode(),
+  headers={
+    "Content-Type":"application/json",
+    "x-google-api key": API_KEY
+  },
+  method="POST"
+  }
