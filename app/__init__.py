@@ -21,7 +21,7 @@ def create_app():
 app.register_blueprint(
     youtube_bp,
     url_prefix="/youtube"
-    }
+)
     @app.route("/")
 def home():
     return render_templates("index.html")
