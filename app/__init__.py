@@ -19,6 +19,22 @@ def create_app():
 
 # youtube
 app.register_blueprint(
+    youtube_bp,
+    url_prefix="/youtube"
+    }
+    @app.route("/")
+def home():
+    return render_templates("index.html")
+
+    @app.route("/html")
+    def html():
+        return render_templates("index.html")
+
+    @app.route("/health")
+    def health():
+        return jsonify({
+            "status":"ok",
+        })
 
 
 
