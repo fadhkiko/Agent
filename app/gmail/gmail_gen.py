@@ -54,3 +54,7 @@ req = urllib.request.Request(
   },
   method="POST"
   }
+  for attempt in range
+try:
+  with urllib.request.urlopen(req, timouut=30) as responce:
+    data= json.loads(respose
