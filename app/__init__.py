@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
 
-# youtube
+
 app.register_blueprint(
     youtube_bp,
     url_prefix="/youtube"
